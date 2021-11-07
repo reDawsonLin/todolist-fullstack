@@ -22,6 +22,7 @@
   "homepage": "https://github.com/reDawsonLin/todolist-fullstack#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
     "mongoose": "^5.13.13"
   }
 }

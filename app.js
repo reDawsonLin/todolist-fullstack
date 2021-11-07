@@ -25,10 +25,23 @@ db.once('open', () => {
 
 // 設定首頁路由
 app.get('/', (req, res) => {
-  res.send('hello world')
+  res.render('index')
 })
 
 // 設定 port 3000
 app.listen(3000, () => {
   console.log('App is running on http://localhost:3000')
 })
+
+//---
+//handlebars
+const exphbs = require('express-handlebars')
+
+//建立一個名為 hbs的樣板引擎，並傳入 exphbs與相關參數
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+//設定 extname: '.hbs'，才能把預設的長檔名改寫成短檔名。
+
+
+
+//啟用樣板引擎 hbs
+app.set('view engine', 'hbs')
