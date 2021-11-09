@@ -52,6 +52,8 @@ app.engine('hbs', exphbs({
 //啟用樣板引擎 hbs
 app.set('view engine', 'hbs')
 
+//-- 後面step 但需要網上放
+
 // 屬於 step Create階段，因程式碼要在.get等資料之前，固往前移
 // 引用 body-parser
 const bodyParser = require('body-parser')
@@ -59,6 +61,13 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({
   extended: true
 }))
+
+// 重構路由語意化 step
+// 載入 method-override
+const methodOverride = require('method-override')
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+app.use(methodOverride('_method'))
+
 
 
 //---
@@ -117,7 +126,7 @@ app.get('/todos/:id/edit', (req, res) => {
     .catch((error) => console.log(error))
 })
 
-app.post('/todos/:id/edit', (req, res) => {
+app.put('/todos/:id', (req, res) => {
   const id = req.params.id
   const { name, isDone } = req.body
   return Todo.findById(id)
@@ -132,7 +141,7 @@ app.post('/todos/:id/edit', (req, res) => {
 
 //---
 // step 刪除特定 todo
-app.post('/todos/:id/delete', (req, res) => {
+app.delete('/todos/:id', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
     .then(todo => todo.remove())
