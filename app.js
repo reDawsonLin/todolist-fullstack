@@ -42,12 +42,23 @@ db.once('open', () => {
 const exphbs = require('express-handlebars')
 
 //建立一個名為 hbs的樣板引擎，並傳入 exphbs與相關參數
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', exphbs({
+  defaultLayout: 'main',
+  extname: '.hbs'
+}))
 //設定 extname: '.hbs'，才能把預設的長檔名改寫成短檔名。
 
 
 //啟用樣板引擎 hbs
 app.set('view engine', 'hbs')
+
+// 屬於 step Create階段，因程式碼要在.get等資料之前，固往前移
+// 引用 body-parser
+const bodyParser = require('body-parser')
+// 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 
 //---
@@ -64,6 +75,8 @@ app.get('/', (req, res) => {
 })
 
 
+
+
 //---
 //step Create todo
 app.get('/todos/new', (req, res) => {
@@ -72,14 +85,21 @@ app.get('/todos/new', (req, res) => {
 
 app.post('/todos', (req, res) => {
   const name = req.body.name
-  return Todo.create({ name })
+  return Todo.create({
+      name
+    })
     .then((() => res.redirect('/')))
     .catch(error => console.log(error))
 })
 
-/// 引用 body-parser
-const bodyParser = require('body-parser')
-// 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+//-----
+//step 瀏覽特定 todo
+app.get('/todos/:id', (req, res) => {
+  const id = req.params.id
+  return Todo.findById(id)
+    .lean()
+    .then((todo) => res.render('detail', {
+      todo
+    }))
+    .catch(error => console.log(error))
+})
