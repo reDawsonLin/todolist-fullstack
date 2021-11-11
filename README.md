@@ -3,11 +3,11 @@
 - 打造 Todo
 - 前端使用 BootStrap/Express-Handlebar/BootMatch
 - 後端使用 Node.js/ Express/ MongoDB/ Heroku
-- 作品連結：https://guarded-cliffs-96389.herokuapp.com/
+- 作品連結：https://tranquil-sands-91676.herokuapp.com/
 
 ## 預覽圖
 
-![](Todo List -preview.png)
+![](TodoList-preview.png)
 
 ## 功能介紹
 
