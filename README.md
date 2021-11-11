@@ -1,7 +1,7 @@
-# Spending Tracker
+# Todo Fullstack
 
 - 打造 Todo
-- 前端使用 BootStrap/Express-Handlebar/BootMatch
+- 前端使用 BootStrap/Express-Handlebar/Bootswatch
 - 後端使用 Node.js/ Express/ MongoDB/ Heroku
 - 作品連結：https://tranquil-sands-91676.herokuapp.com/
 
