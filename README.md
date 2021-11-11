@@ -38,7 +38,7 @@ git clone https://github.com/reDawsonLin/todolist-fullstack.git
 2. 進入專案目錄資料夾
 
 ```
-cd spending-tracker
+cd todolist-fullstack
 ```
 
 3. 安裝 npm 套件
